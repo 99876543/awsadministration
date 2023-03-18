@@ -14,7 +14,7 @@ instanceIds=$(aws ec2 describe-instances --filters "Name=tag:Env,Values=QA" "Nam
 
 if [[ -n $instanceIds ]]; then
     echo "The instance ids which will be shutdown are ${instanceIds}"
-    aws ec2 start-instances --instance-ids ${instanceIds}
+    aws ec2 stop-instances --instance-ids ${instanceIds}
 else
     echo "No instances found with matching criteria Env = Dev"
 fi
