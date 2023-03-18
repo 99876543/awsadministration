@@ -1,4 +1,14 @@
 #!/bin/bash
+tag_name=$1
+tag_value=$2
+# if user doesnot pass tag_name as 1 argument assign Env as default
+if [[ -z $tag_name ]]; then
+    tag_name="Env"
+fi
+# if user doesnot pass tag_value as 2 argument assign QA as default
+if [[ -z $tag_value ]]; then
+    tag_value="QA"
+fi
 
 instanceIds=$(aws ec2 describe-instances --filters "Name=tag:Env,Values=QA" "Name=instance-state-name,Values=running" --query "Reservations[].Instances[].InstanceId" --output text)
 
