@@ -7,10 +7,10 @@ if [[ -z $tag_name ]]; then
 fi
 # if user doesnot pass tag_value as 2 argument assign QA as default
 if [[ -z $tag_value ]]; then
-    tag_value="QA"
+    tag_value="Dev"
 fi
 
-instanceIds=$(aws ec2 describe-instances --filters "Name=tag:Env,Values=QA" "Name=instance-state-name,Values=running" --query "Reservations[].Instances[].InstanceId" --output text)
+instanceIds=$(aws ec2 describe-instances --filters "Name=tag:Env,Values=Dev" "Name=instance-state-name,Values=running" --query "Reservations[].Instances[].InstanceId" --output text)
 
 if [[ -n $instanceIds ]]; then
     echo "The instance ids which will be shutdown are ${instanceIds}"
